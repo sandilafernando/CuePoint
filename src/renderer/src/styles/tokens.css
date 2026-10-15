@@ -1,0 +1,186 @@
+/**
+ * CuePoint design tokens.
+ *
+ * Single source of truth for colour, spacing, typography, radii, shadows and motion.
+ * Components must consume these variables rather than hard-coding values, which is what
+ * keeps the dark and light themes consistent and makes the interface predictable.
+ */
+
+:root {
+  /* ---- Typography ---- */
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI Semibold', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Mono', 'Consolas', 'SFMono-Regular', ui-monospace, monospace;
+
+  --text-2xs: 10px;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-lg: 15px;
+  --text-xl: 18px;
+  --text-2xl: 23px;
+  --text-3xl: 30px;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --tracking-caps: 0.06em;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-0: 0;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 12px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+  --space-9: 32px;
+  --space-10: 40px;
+
+  /* ---- Radii ---- */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* ---- Layout ---- */
+  --titlebar-height: 38px;
+  --statusbar-height: 26px;
+  --nav-width: 76px;
+  --nav-width-expanded: 190px;
+  --toolbar-height: 44px;
+  --panel-min-width: 260px;
+  --panel-max-width: 560px;
+
+  /* ---- Motion ---- */
+  --duration-instant: 80ms;
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --duration-slow: 260ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- Depth ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 46px rgba(0, 0, 0, 0.55);
+  --shadow-focus: 0 0 0 2px var(--accent-ring);
+
+  --z-canvas: 1;
+  --z-overlay: 10;
+  --z-panel: 20;
+  --z-modal: 100;
+  --z-toast: 200;
+}
+
+/* ------------------------------------------------------------------ */
+/* Dark theme (default)                                                */
+/* ------------------------------------------------------------------ */
+
+:root,
+[data-theme='dark'] {
+  --accent: #4c8dff;
+  --accent-hover: #6ba2ff;
+  --accent-press: #3b78e0;
+  --accent-soft: rgba(76, 141, 255, 0.14);
+  --accent-ring: rgba(76, 141, 255, 0.55);
+
+  --bg-app: #0e1116;
+  --bg-canvas: #090b0f;
+  --bg-panel: #161a20;
+  --bg-panel-raised: #1c2128;
+  --bg-input: #10141a;
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(255, 255, 255, 0.08);
+  --bg-scrim: rgba(4, 6, 10, 0.66);
+  --bg-titlebar: #161a20;
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  --text-primary: #e8edf5;
+  --text-secondary: #a6b2c4;
+  --text-muted: #6f7c90;
+  --text-inverse: #0b0e13;
+  --text-on-accent: #ffffff;
+
+  --success: #3ecf8e;
+  --success-soft: rgba(62, 207, 142, 0.14);
+  --warning: #f0b13c;
+  --warning-soft: rgba(240, 177, 60, 0.14);
+  --danger: #ef6b6b;
+  --danger-soft: rgba(239, 107, 107, 0.14);
+  --info: #57b6e6;
+  --info-soft: rgba(87, 182, 230, 0.14);
+
+  --grid-minor: rgba(255, 255, 255, 0.06);
+  --grid-major: rgba(255, 255, 255, 0.13);
+  --guide: #f0b13c;
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* Light theme                                                         */
+/* ------------------------------------------------------------------ */
+
+[data-theme='light'] {
+  --accent: #1f6feb;
+  --accent-hover: #1a5fd0;
+  --accent-press: #17539f;
+  --accent-soft: rgba(31, 111, 235, 0.1);
+  --accent-ring: rgba(31, 111, 235, 0.45);
+
+  --bg-app: #eef1f5;
+  --bg-canvas: #dfe3ea;
+  --bg-panel: #ffffff;
+  --bg-panel-raised: #f6f8fb;
+  --bg-input: #ffffff;
+  --bg-hover: rgba(15, 23, 42, 0.05);
+  --bg-active: rgba(15, 23, 42, 0.09);
+  --bg-scrim: rgba(15, 23, 42, 0.35);
+  --bg-titlebar: #ffffff;
+
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border: rgba(15, 23, 42, 0.14);
+  --border-strong: rgba(15, 23, 42, 0.26);
+
+  --text-primary: #131a24;
+  --text-secondary: #46536a;
+  --text-muted: #6d7a91;
+  --text-inverse: #ffffff;
+  --text-on-accent: #ffffff;
+
+  --success: #178a54;
+  --success-soft: rgba(23, 138, 84, 0.12);
+  --warning: #9a6206;
+  --warning-soft: rgba(154, 98, 6, 0.12);
+  --danger: #c02a2a;
+  --danger-soft: rgba(192, 42, 42, 0.1);
+  --info: #16668f;
+  --info-soft: rgba(22, 102, 143, 0.1);
+
+  --grid-minor: rgba(15, 23, 42, 0.07);
+  --grid-major: rgba(15, 23, 42, 0.16);
+  --guide: #b26a00;
+  color-scheme: light;
+}
+
+/* Respect the OS reduced-motion preference; also honoured by the app setting. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+[data-reduce-motion='true'] {
+  --duration-instant: 0ms;
+  --duration-fast: 0ms;
+  --duration-normal: 0ms;
+  --duration-slow: 0ms;
+}

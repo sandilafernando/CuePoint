@@ -1,0 +1,144 @@
+{
+  "name": "cuepoint",
+  "version": "1.0.0",
+  "description": "CuePoint — professional LED stage designer, pixel mapping, NDI preview and recording suite",
+  "author": {
+    "name": "Sandila Fernando"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "main": "./out/main/index.js",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.{ts,tsx}\" \"tools/**/*.mjs\"",
+    "test": "npm run test:unit && npm run test:renderer",
+    "test:unit": "vitest run --config vitest.node.config.ts",
+    "test:renderer": "vitest run --config vitest.dom.config.ts",
+    "test:e2e": "playwright test",
+    "test:ndi-live": "node tools/ndi-selftest.mjs",
+    "assets:icons": "node tools/generate-icons.mjs",
+    "manual:pdf": "node tools/manual-to-pdf.mjs",
+    "package:win": "npm run build && electron-builder --win --publish never",
+    "package:portable": "npm run build && electron-builder --win portable --publish never",
+    "release:checksums": "node tools/release-checksums.mjs",
+    "verify:ndi-runtime": "node tools/ndi-runtime-check.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "koffi": "^3.3.3",
+    "sql.js": "^1.14.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/sql.js": "^1.4.11",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^6.0.0",
+    "eslint": "^9.39.5",
+    "jsdom": "^30.1.2",
+    "playwright": "^1.64.1",
+    "png-to-ico": "^3.0.2",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.4"
+  },
+  "productName": "CuePoint",
+  "copyright": "Copyright © 2026 Sandila Fernando",
+  "build": {
+    "appId": "com.sandilafernando.cuepoint",
+    "productName": "CuePoint",
+    "copyright": "Copyright © 2026 Sandila Fernando",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "out/**/*",
+      "package.json",
+      "!**/*.map",
+      "!**/node_modules/**/{test,tests,__tests__,example,examples,doc,docs}/**"
+    ],
+    "extraResources": [
+      {
+        "from": "docs",
+        "to": "docs",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "assets/icon.ico",
+        "to": "icon.ico"
+      },
+      {
+        "from": "assets/logo-512.png",
+        "to": "logo-512.png"
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/koffi/**",
+      "node_modules/ffmpeg-static/**",
+      "node_modules/sql.js/dist/sql-wasm.wasm"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "executableName": "CuePoint",
+      "publisherName": "Sandila Fernando",
+      "legalTrademarks": "CuePoint",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CuePoint",
+      "uninstallDisplayName": "CuePoint ${version}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "CuePoint-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "CuePoint-Portable-${version}.${ext}",
+      "requestExecutionLevel": "user"
+    },
+    "publish": null
+  }
+}
